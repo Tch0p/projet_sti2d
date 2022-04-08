@@ -11,15 +11,17 @@ input.onButtonPressed(Button.A, function () {
         `)
 })
 radio.onReceivedString(function (receivedString) {
-    basic.showLeds(`
-        . . # . .
-        . # # # .
-        # # # # #
-        . # # # .
-        . . # . .
-        `)
-    if (pins.digitalReadPin(DigitalPin.P1) == 1) {
-        pins.digitalWritePin(DigitalPin.P0, 1)
+    if (0 == 0) {
+        pins.digitalWritePin(DigitalPin.P1, 1)
+        basic.showLeds(`
+            . . # . .
+            . # # # .
+            # # # # #
+            . # # # .
+            . . # . .
+            `)
+    } else {
+        pins.digitalWritePin(DigitalPin.P1, 0)
     }
 })
 input.onButtonPressed(Button.B, function () {
