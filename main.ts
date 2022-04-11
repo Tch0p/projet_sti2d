@@ -1,7 +1,4 @@
 input.onButtonPressed(Button.A, function () {
-    basic.clearScreen()
-    pins.analogWritePin(AnalogPin.P0, 338)
-    radio.sendString("test")
     basic.showLeds(`
         . . . . .
         . . # . .
@@ -9,10 +6,7 @@ input.onButtonPressed(Button.A, function () {
         . . # . .
         . . . . .
         `)
-})
-radio.onReceivedString(function (receivedString) {
-    if (0 == 0) {
-        pins.digitalWritePin(DigitalPin.P1, 1)
+    if (pins.digitalReadPin(DigitalPin.P1) <= 1) {
         basic.showLeds(`
             . . # . .
             . # # # .
@@ -20,9 +14,28 @@ radio.onReceivedString(function (receivedString) {
             . # # # .
             . . # . .
             `)
+        pins.digitalWritePin(DigitalPin.P0, 1)
+        radio.sendString("test")
     } else {
-        pins.digitalWritePin(DigitalPin.P1, 0)
+        basic.showLeds(`
+            # . . . #
+            # # . . #
+            # . # . #
+            # . . # #
+            # . . . #
+            `)
     }
+})
+radio.onReceivedString(function (receivedString) {
+    basic.clearScreen()
+    pins.analogWritePin(AnalogPin.P0, 594)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . # # # .
+        . . . . .
+        . . . . .
+        `)
 })
 input.onButtonPressed(Button.B, function () {
     basic.clearScreen()
